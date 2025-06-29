@@ -6,7 +6,6 @@ export interface Question {
   options?: Answer[];
   answered?: boolean;
 }
-
 export interface Answer {
   id: string;
   text?: string;
