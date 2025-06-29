@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "declaration": true, // This is crucial for generating .d.ts files
+    "outDir": "./dist",  // Output directory for compiled JS and type definitions
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./index.ts"] // Adjust if you used 'src' directory, e.g., ["src/**/*.ts"]
+}
