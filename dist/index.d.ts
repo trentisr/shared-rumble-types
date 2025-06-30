@@ -37,7 +37,11 @@ export interface DetailedPlayer {
 export interface Rumble {
     id: string;
     name: string;
-    status: 'active' | 'completed' | 'draft';
+    description: string | null;
+    create_time: Date;
+    created_by: string | null;
+    deleted: Date | null;
+    status: 'active' | 'completed' | 'draft' | 'in-game';
     questions: Question[];
     teams: Team[];
     schematics: Schematics;
@@ -45,13 +49,11 @@ export interface Rumble {
 }
 export interface RumbleCreateInput {
     name: string;
-    description?: string;
-    created_by?: string;
+    description?: string | null;
+    created_by?: string | null;
     questions?: Question[];
     schematics?: Schematics;
     teams?: Team[];
-    status?: 'active' | 'completed' | 'draft';
+    status?: 'active' | 'completed' | 'draft' | 'in-game';
 }
-export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
-    id?: string;
-};
+export type RumbleUpdateInput = Partial<Rumble>;

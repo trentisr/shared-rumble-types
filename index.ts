@@ -1,5 +1,3 @@
-
-
 export interface Answer {
   id: string;
   text?: string;
@@ -13,7 +11,7 @@ export interface Question {
   image?: string;
   options?: Answer[];
   answered?: boolean;
-  textInputCorrectAnswer?: string | number; 
+  textInputCorrectAnswer?: string | number;
 }
 
 export interface TeamMember {
@@ -22,7 +20,7 @@ export interface TeamMember {
 }
 
 export interface Team {
-  id?: string; 
+  id?: string;
   name: string;
   type: 'Single' | 'Team';
   members: TeamMember[];
@@ -34,7 +32,7 @@ export interface Schematics {
   timeGap: number;
   numRounds: number;
   gameMode: 'manual' | 'automatic';
-  startTime?: Date | string; 
+  startTime?: Date | string;
 }
 
 export interface DetailedPlayer {
@@ -45,7 +43,11 @@ export interface DetailedPlayer {
 export interface Rumble {
   id: string;
   name: string;
-  status: 'active' | 'completed' | 'draft';
+  description: string | null;
+  create_time: Date;
+  created_by: string | null;
+  deleted: Date | null;
+  status: 'active' | 'completed' | 'draft' | 'in-game';
   questions: Question[];
   teams: Team[];
   schematics: Schematics;
@@ -54,14 +56,12 @@ export interface Rumble {
 
 export interface RumbleCreateInput {
   name: string;
-  description?: string;
-  created_by?: string;
+  description?: string | null;
+  created_by?: string | null;
   questions?: Question[];
   schematics?: Schematics;
   teams?: Team[];
-  status?: 'active' | 'completed' | 'draft';
+  status?: 'active' | 'completed' | 'draft' | 'in-game';
 }
 
-export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
-  id?: string;
-};
+export type RumbleUpdateInput = Partial<Rumble>;
