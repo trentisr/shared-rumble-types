@@ -42,12 +42,13 @@ export interface DetailedPlayer {
   teamName?: string;
 }
 
+
 export interface Team {
   readonly id?: string;
   name: string;
   players?: string[];
   type: 'Single' | 'Team';
-  members: TeamMember[]; // Changed from DetailedPlayer[] to TeamMember[]
+  members: TeamMember[];
   captainId?: string;
 }
 
@@ -88,3 +89,30 @@ export interface RumbleCreateInput {
 export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
   readonly id?: string;
 };
+
+
+export interface PlayerLobbyInfo { 
+  name: string;
+  type: 'Single' | 'Team';
+  id: string;
+  teamName?: string;
+}
+
+
+
+export interface LobbyTeam {
+  name: string;
+  members: TeamMember[]; 
+  captainId?: string;
+}
+
+export interface LobbyStatusResponse {
+  players: PlayerLobbyInfo[];
+  teams: LobbyTeam[]; 
+  captain?: string; 
+  gameStarted: boolean;
+  gameStartTime?: string;
+  currentQuestionIndex?: number;
+  rumbleName?: string;
+  questionsCount?: number;
+}

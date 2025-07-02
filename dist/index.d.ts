@@ -39,7 +39,7 @@ export interface Team {
     players?: string[];
     type: 'Single' | 'Team';
     members: TeamMember[];
-    captain?: string;
+    captainId?: string;
 }
 export interface Schematics {
     timeLimit: number;
@@ -75,3 +75,24 @@ export interface RumbleCreateInput {
 export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
     readonly id?: string;
 };
+export interface PlayerLobbyInfo {
+    name: string;
+    type: 'Single' | 'Team';
+    id: string;
+    teamName?: string;
+}
+export interface LobbyTeam {
+    name: string;
+    members: TeamMember[];
+    captainId?: string;
+}
+export interface LobbyStatusResponse {
+    players: PlayerLobbyInfo[];
+    teams: LobbyTeam[];
+    captain?: string;
+    gameStarted: boolean;
+    gameStartTime?: string;
+    currentQuestionIndex?: number;
+    rumbleName?: string;
+    questionsCount?: number;
+}
