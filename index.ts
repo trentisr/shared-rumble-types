@@ -74,6 +74,7 @@ export interface Rumble {
   create_time: Date;
   created_by: string | null;
   deleted: Date | null;
+  currentQuestionStartTime?: Date; 
 }
 
 export interface RumbleCreateInput {
@@ -84,10 +85,12 @@ export interface RumbleCreateInput {
   schematics?: Schematics;
   teams?: Team[];
   status?: 'active' | 'completed' | 'draft';
+  currentQuestionStartTime?: Date; 
 }
 
 export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
   readonly id?: string;
+  currentQuestionStartTime?: Date; 
 };
 
 
@@ -97,8 +100,6 @@ export interface PlayerLobbyInfo {
   id: string;
   teamName?: string;
 }
-
-
 
 export interface LobbyTeam {
   name: string;
