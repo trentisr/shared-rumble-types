@@ -38,7 +38,7 @@ export interface Team {
     name: string;
     players?: string[];
     type: 'Single' | 'Team';
-    members: DetailedPlayer[];
+    members: TeamMember[];
     captain?: string;
 }
 export interface Schematics {

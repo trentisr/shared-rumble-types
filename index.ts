@@ -47,7 +47,7 @@ export interface Team {
   name: string;
   players?: string[];
   type: 'Single' | 'Team';
-  members: DetailedPlayer[];
+  members: TeamMember[]; // Changed from DetailedPlayer[] to TeamMember[]
   captain?: string;
 }
 
