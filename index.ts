@@ -88,8 +88,9 @@ export interface RumbleCreateInput {
   currentQuestionStartTime?: Date | null; 
   playerDetails?: DetailedPlayer[]; 
 }
+
 export interface RumbleUpdateInput {
-  id?: string; 
+  id?: string;
   name?: string;
   description?: string | null;
   created_by?: string;
@@ -102,6 +103,7 @@ export interface RumbleUpdateInput {
   currentQuestionIndex?: number;
   gameMode?: 'manual' | 'automatic';
 }
+
 export interface PlayerLobbyInfo {
   name: string;
   type: 'Single' | 'Team';
