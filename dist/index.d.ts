@@ -76,9 +76,7 @@ export interface RumbleCreateInput {
     currentQuestionStartTime?: Date | null;
     playerDetails?: DetailedPlayer[];
 }
-export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>> & {
-    readonly id: string;
-};
+export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>>;
 export interface PlayerLobbyInfo {
     name: string;
     type: 'Single' | 'Team';

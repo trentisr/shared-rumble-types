@@ -74,7 +74,7 @@ export interface Rumble {
   create_time: Date;
   created_by: string | null;
   deleted: Date | null;
-  currentQuestionStartTime?: Date | null; // Changed to allow null for consistency with backend
+  currentQuestionStartTime?: Date | null; 
 }
 
 export interface RumbleCreateInput {
@@ -85,14 +85,11 @@ export interface RumbleCreateInput {
   schematics?: Schematics;
   teams?: Team[];
   status?: 'active' | 'completed' | 'draft';
-  currentQuestionStartTime?: Date | null; // Changed to allow null
-  playerDetails?: DetailedPlayer[]; // Added playerDetails
+  currentQuestionStartTime?: Date | null; 
+  playerDetails?: DetailedPlayer[]; 
 }
+export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>>;
 
-// Updated RumbleUpdateInput to directly define its properties
-export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>> & {
-  readonly id: string; // ID is required for update
-};
 
 export interface PlayerLobbyInfo {
   name: string;
