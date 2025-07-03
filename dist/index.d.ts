@@ -42,6 +42,7 @@ export interface Team {
     type: PlayerType;
     members: TeamMember[];
     captainId?: string;
+    score?: number;
 }
 export interface Schematics {
     timeLimit: number;
@@ -68,9 +69,14 @@ export interface Rumble {
     deleted: Date | null;
     currentQuestionStartTime?: Date | null;
 }
-export type RumbleCreateInput = Omit<Partial<Rumble>, 'id' | 'status' | 'create_time' | 'deleted' | 'currentQuestionIndex' | 'gameMode'> & {
+export type RumbleCreateInput = Omit<Partial<Rumble>, 'id' | 'status' | 'create_time' | 'deleted' | 'currentQuestionIndex' | 'gameMode' | 'playerDetails' | 'currentQuestionStartTime'> & {
     name: string;
-    status?: Exclude<RumbleStatus, 'in-game' | 'completed'>;
+    status?: Exclude<RumbleStatus, 'in-game' | 'completed' | 'active'>;
+    questions?: Question[];
+    schematics?: Schematics;
+    teams?: Team[];
+    description?: string | null;
+    created_by?: string;
 };
 export type RumbleUpdateInput = Partial<Omit<Rumble, 'create_time' | 'deleted'>>;
 export interface PlayerLobbyInfo {
@@ -87,7 +93,7 @@ export interface LobbyTeam {
 export interface LobbyStatusResponse {
     players: PlayerLobbyInfo[];
     teams: LobbyTeam[];
-    captain?: string;
+    captainId?: string;
     gameStarted: boolean;
     gameStartTime?: string;
     currentQuestionIndex?: number;
