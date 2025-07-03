@@ -40,6 +40,7 @@ export interface DetailedPlayer {
   answers: { [questionId: string]: PlayerRecordedAnswer };
   type: 'Single' | 'Team';
   teamName?: string;
+  questionsAttempted?: number; 
 }
 
 

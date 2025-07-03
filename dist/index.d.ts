@@ -32,6 +32,7 @@ export interface DetailedPlayer {
     };
     type: 'Single' | 'Team';
     teamName?: string;
+    questionsAttempted?: number;
 }
 export interface Team {
     readonly id?: string;
@@ -62,6 +63,7 @@ export interface Rumble {
     create_time: Date;
     created_by: string | null;
     deleted: Date | null;
+    currentQuestionStartTime?: Date;
 }
 export interface RumbleCreateInput {
     name: string;
@@ -71,9 +73,11 @@ export interface RumbleCreateInput {
     schematics?: Schematics;
     teams?: Team[];
     status?: 'active' | 'completed' | 'draft';
+    currentQuestionStartTime?: Date;
 }
 export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
     readonly id?: string;
+    currentQuestionStartTime?: Date;
 };
 export interface PlayerLobbyInfo {
     name: string;
