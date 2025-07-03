@@ -5,14 +5,14 @@ export interface Answer {
 }
 export interface PlayerRecordedAnswer extends Answer {
     answer: string;
-    isCorrect: boolean;
     score: number;
     timeTaken: number;
 }
+export type QuestionType = 'textinput' | 'truefalse' | 'mcq' | 'image_textinput' | 'image_truefalse' | 'image_mcq';
 export interface Question {
     readonly id: string;
     text: string;
-    type: 'textinput' | 'truefalse' | 'mcq' | 'image_textinput' | 'image_truefalse' | 'image_mcq';
+    type: QuestionType;
     image?: string;
     timer?: number;
     options?: Answer[];
@@ -23,6 +23,7 @@ export interface TeamMember {
     id: string;
     name: string;
 }
+export type PlayerType = 'Single' | 'Team';
 export interface DetailedPlayer {
     readonly id: string;
     name: string;
@@ -30,7 +31,7 @@ export interface DetailedPlayer {
     answers: {
         [questionId: string]: PlayerRecordedAnswer;
     };
-    type: 'Single' | 'Team';
+    type: PlayerType;
     teamName?: string;
     questionsAttempted?: number;
 }
@@ -38,7 +39,7 @@ export interface Team {
     readonly id?: string;
     name: string;
     players?: string[];
-    type: 'Single' | 'Team';
+    type: PlayerType;
     members: TeamMember[];
     captainId?: string;
 }
@@ -49,50 +50,32 @@ export interface Schematics {
     gameMode: 'manual' | 'automatic';
     startTime?: Date | string;
 }
+export type RumbleStatus = 'active' | 'completed' | 'draft' | 'in-game';
+export type GameMode = 'manual' | 'automatic';
 export interface Rumble {
     readonly id: string;
     name: string;
-    status: 'active' | 'completed' | 'draft' | 'in-game';
+    status: RumbleStatus;
     questions: Question[];
     teams: Team[];
     schematics: Schematics;
     playerDetails?: DetailedPlayer[];
     currentQuestionIndex: number;
-    gameMode: 'manual' | 'automatic';
+    gameMode: GameMode;
     description: string | null;
     create_time: Date;
     created_by: string | null;
     deleted: Date | null;
     currentQuestionStartTime?: Date | null;
 }
-export interface RumbleCreateInput {
+export type RumbleCreateInput = Omit<Partial<Rumble>, 'id' | 'status' | 'create_time' | 'deleted' | 'currentQuestionIndex' | 'gameMode'> & {
     name: string;
-    description?: string | null;
-    created_by?: string;
-    questions?: Question[];
-    schematics?: Schematics;
-    teams?: Team[];
-    status?: 'active' | 'completed' | 'draft';
-    currentQuestionStartTime?: Date | null;
-    playerDetails?: DetailedPlayer[];
-}
-export interface RumbleUpdateInput {
-    id?: string;
-    name?: string;
-    description?: string | null;
-    created_by?: string;
-    questions?: Question[];
-    schematics?: Schematics;
-    teams?: Team[];
-    status?: 'active' | 'completed' | 'draft' | 'in-game';
-    currentQuestionStartTime?: Date | null;
-    playerDetails?: DetailedPlayer[];
-    currentQuestionIndex?: number;
-    gameMode?: 'manual' | 'automatic';
-}
+    status?: Exclude<RumbleStatus, 'in-game' | 'completed'>;
+};
+export type RumbleUpdateInput = Partial<Omit<Rumble, 'create_time' | 'deleted'>>;
 export interface PlayerLobbyInfo {
     name: string;
-    type: 'Single' | 'Team';
+    type: PlayerType;
     id: string;
     teamName?: string;
 }
