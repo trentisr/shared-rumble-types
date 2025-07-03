@@ -40,9 +40,8 @@ export interface DetailedPlayer {
   answers: { [questionId: string]: PlayerRecordedAnswer };
   type: 'Single' | 'Team';
   teamName?: string;
-  questionsAttempted?: number; 
+  questionsAttempted?: number;
 }
-
 
 export interface Team {
   readonly id?: string;
@@ -75,7 +74,7 @@ export interface Rumble {
   create_time: Date;
   created_by: string | null;
   deleted: Date | null;
-  currentQuestionStartTime?: Date; 
+  currentQuestionStartTime?: Date | null; // Changed to allow null for consistency with backend
 }
 
 export interface RumbleCreateInput {
@@ -86,16 +85,16 @@ export interface RumbleCreateInput {
   schematics?: Schematics;
   teams?: Team[];
   status?: 'active' | 'completed' | 'draft';
-  currentQuestionStartTime?: Date; 
+  currentQuestionStartTime?: Date | null; // Changed to allow null
+  playerDetails?: DetailedPlayer[]; // Added playerDetails
 }
 
-export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
-  readonly id?: string;
-  currentQuestionStartTime?: Date; 
+// Updated RumbleUpdateInput to directly define its properties
+export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>> & {
+  readonly id: string; // ID is required for update
 };
 
-
-export interface PlayerLobbyInfo { 
+export interface PlayerLobbyInfo {
   name: string;
   type: 'Single' | 'Team';
   id: string;
@@ -104,14 +103,14 @@ export interface PlayerLobbyInfo {
 
 export interface LobbyTeam {
   name: string;
-  members: TeamMember[]; 
+  members: TeamMember[];
   captainId?: string;
 }
 
 export interface LobbyStatusResponse {
   players: PlayerLobbyInfo[];
-  teams: LobbyTeam[]; 
-  captain?: string; 
+  teams: LobbyTeam[];
+  captain?: string;
   gameStarted: boolean;
   gameStartTime?: string;
   currentQuestionIndex?: number;

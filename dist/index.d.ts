@@ -63,7 +63,7 @@ export interface Rumble {
     create_time: Date;
     created_by: string | null;
     deleted: Date | null;
-    currentQuestionStartTime?: Date;
+    currentQuestionStartTime?: Date | null;
 }
 export interface RumbleCreateInput {
     name: string;
@@ -73,11 +73,11 @@ export interface RumbleCreateInput {
     schematics?: Schematics;
     teams?: Team[];
     status?: 'active' | 'completed' | 'draft';
-    currentQuestionStartTime?: Date;
+    currentQuestionStartTime?: Date | null;
+    playerDetails?: DetailedPlayer[];
 }
-export type RumbleUpdateInput = Partial<RumbleCreateInput> & {
-    readonly id?: string;
-    currentQuestionStartTime?: Date;
+export type RumbleUpdateInput = Partial<Omit<Rumble, 'id' | 'create_time' | 'deleted'>> & {
+    readonly id: string;
 };
 export interface PlayerLobbyInfo {
     name: string;
