@@ -89,19 +89,19 @@ export interface RumbleCreateInput {
   playerDetails?: DetailedPlayer[]; 
 }
 export interface RumbleUpdateInput {
+  id?: string; 
   name?: string;
   description?: string | null;
   created_by?: string;
   questions?: Question[];
   schematics?: Schematics;
   teams?: Team[];
-  status?: 'active' | 'completed' | 'draft' | 'in-game'; 
+  status?: 'active' | 'completed' | 'draft' | 'in-game';
   currentQuestionStartTime?: Date | null;
   playerDetails?: DetailedPlayer[];
-  currentQuestionIndex?: number; 
-  gameMode?: 'manual' | 'automatic'; 
+  currentQuestionIndex?: number;
+  gameMode?: 'manual' | 'automatic';
 }
-
 export interface PlayerLobbyInfo {
   name: string;
   type: 'Single' | 'Team';

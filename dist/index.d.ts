@@ -77,6 +77,7 @@ export interface RumbleCreateInput {
     playerDetails?: DetailedPlayer[];
 }
 export interface RumbleUpdateInput {
+    id?: string;
     name?: string;
     description?: string | null;
     created_by?: string;
