@@ -1,3 +1,4 @@
+// node_modules/shared-rumble-types/dist/index.ts (or corresponding source)
 export interface Answer {
   readonly id: string;
   text: string;
@@ -47,13 +48,13 @@ export interface DetailedPlayer {
 }
 
 export interface Team {
-  readonly id?: string; 
+  readonly id?: string;
   name: string;
   players?: string[];
   type: PlayerType;
   members: TeamMember[];
   captainId?: string;
-  score?: number; 
+  score?: number;
 }
 
 export interface Schematics {
@@ -92,11 +93,11 @@ export type RumbleCreateInput = Omit<
   | 'deleted'
   | 'currentQuestionIndex'
   | 'gameMode'
-  | 'playerDetails' 
+  | 'playerDetails'
   | 'currentQuestionStartTime'
 > & {
   name: string;
-  status?: Exclude<RumbleStatus, 'in-game' | 'completed' | 'active'>; 
+  status?: Exclude<RumbleStatus, 'in-game' | 'completed' | 'active'>;
   questions?: Question[];
   schematics?: Schematics;
   teams?: Team[];
@@ -107,7 +108,7 @@ export type RumbleCreateInput = Omit<
 export type RumbleUpdateInput = Partial<
   Omit<
     Rumble,
-    'create_time' | 'deleted'
+    'create_time' | 'deleted' | 'currentQuestionStartTime'
   >
 >;
 
@@ -127,7 +128,7 @@ export interface LobbyTeam {
 export interface LobbyStatusResponse {
   players: PlayerLobbyInfo[];
   teams: LobbyTeam[];
-  captainId?: string; 
+  captainId?: string;
   gameStarted: boolean;
   gameStartTime?: string;
   currentQuestionIndex?: number;
