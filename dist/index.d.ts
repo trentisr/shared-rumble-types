@@ -69,7 +69,7 @@ export interface Rumble {
     deleted: Date | null;
     currentQuestionStartTime?: Date | null;
 }
-export type RumbleCreateInput = Omit<Partial<Rumble>, 'id' | 'status' | 'create_time' | 'deleted' | 'currentQuestionIndex' | 'gameMode' | 'playerDetails' | 'currentQuestionStartTime'> & {
+export type RumbleCreateInput = Omit<Partial<Rumble>, 'id' | 'status' | 'create_time' | 'deleted' | 'currentQuestionIndex' | 'gameMode' | 'playerDetails'> & {
     name: string;
     status?: Exclude<RumbleStatus, 'in-game' | 'completed' | 'active'>;
     questions?: Question[];

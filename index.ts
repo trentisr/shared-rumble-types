@@ -94,7 +94,6 @@ export type RumbleCreateInput = Omit<
   | 'currentQuestionIndex'
   | 'gameMode'
   | 'playerDetails'
-  | 'currentQuestionStartTime'
 > & {
   name: string;
   status?: Exclude<RumbleStatus, 'in-game' | 'completed' | 'active'>;
