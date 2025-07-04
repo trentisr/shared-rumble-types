@@ -108,7 +108,7 @@ export type RumbleCreateInput = Omit<
 export type RumbleUpdateInput = Partial<
   Omit<
     Rumble,
-    'create_time' | 'deleted' | 'currentQuestionStartTime'
+    'create_time' | 'deleted'
   >
 >;
 
